@@ -82,7 +82,7 @@ export default function Header() {
 
             <button className="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-sm font-medium text-gray-700 dark:text-gray-300">
               <MapPin className="h-4 w-4 text-brand-500" />
-              Mumbai
+              Howrah
             </button>
 
             <ThemeToggle />
@@ -166,28 +166,32 @@ export default function Header() {
         <div className="lg:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 px-4 py-4 space-y-3">
           <button className="flex items-center gap-2 w-full px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-300">
             <MapPin className="h-4 w-4 text-brand-500" />
-            Mumbai
+            Howrah
           </button>
           <Link
             href="/"
+            onClick={() => setMobileMenuOpen(false)}
             className="block px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-sm font-medium"
           >
             Home
           </Link>
           <Link
             href="/products"
+            onClick={() => setMobileMenuOpen(false)}
             className="block px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-sm font-medium"
           >
             Products
           </Link>
           <Link
             href="/categories"
+            onClick={() => setMobileMenuOpen(false)}
             className="block px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-sm font-medium"
           >
             Categories
           </Link>
           <Link
             href="/orders"
+            onClick={() => setMobileMenuOpen(false)}
             className="block px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-sm font-medium"
           >
             Orders

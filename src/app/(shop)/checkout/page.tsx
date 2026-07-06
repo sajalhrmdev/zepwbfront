@@ -469,7 +469,7 @@ export default function CheckoutPage() {
                 <Label htmlFor="pincode">Pincode *</Label>
                 <Input
                   id="pincode"
-                  placeholder="400001"
+                  placeholder="711101"
                   value={addressForm.pincode}
                   onChange={(e) => setAddressForm({ ...addressForm, pincode: e.target.value })}
                   required
@@ -513,7 +513,7 @@ export default function CheckoutPage() {
                 <Label htmlFor="city">City *</Label>
                 <Input
                   id="city"
-                  placeholder="Mumbai"
+                  placeholder="Howrah"
                   value={addressForm.city}
                   onChange={(e) => setAddressForm({ ...addressForm, city: e.target.value })}
                   required

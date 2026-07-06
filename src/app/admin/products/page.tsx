@@ -33,6 +33,7 @@ import { adminProductService, type CreateProductData } from '@/services/admin-pr
 import { categoryService } from '@/services/category.service';
 import api from '@/services/api';
 import type { Product, Brand } from '@/types';
+import { ImageUpload } from '@/components/image-upload';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -443,36 +444,29 @@ export default function AdminProductsPage() {
               </div>
             </div>
             <div className="grid gap-2">
-              <Label>Image URLs</Label>
+              <Label>Images</Label>
               {form.imageUrls.map((url, idx) => (
-                <div key={idx} className="flex gap-2 items-center">
-                  {url && (
-                    <div className="h-10 w-10 shrink-0 rounded-md overflow-hidden bg-muted">
-                      <img src={url} alt="" className="h-full w-full object-cover" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />
-                    </div>
-                  )}
-                  <Input
-                    className="flex-1"
-                    value={url}
-                    onChange={(e) => {
-                      const urls = [...form.imageUrls];
-                      urls[idx] = e.target.value;
-                      setForm({ ...form, imageUrls: urls });
-                    }}
-                    placeholder="https://example.com/image.jpg"
-                  />
-                  {idx === form.imageUrls.length - 1 && (
-                    <Button variant="outline" size="icon" onClick={() => setForm({ ...form, imageUrls: [...form.imageUrls, ''] })}>
-                      <Plus className="h-4 w-4" />
-                    </Button>
-                  )}
+                <div key={idx} className="flex gap-2 items-start">
+                  <div className="flex-1">
+                    <ImageUpload
+                      value={url}
+                      onChange={(newUrl) => {
+                        const urls = [...form.imageUrls];
+                        urls[idx] = newUrl;
+                        setForm({ ...form, imageUrls: urls });
+                      }}
+                    />
+                  </div>
                   {form.imageUrls.length > 1 && (
-                    <Button variant="ghost" size="icon" className="text-red-500" onClick={() => setForm({ ...form, imageUrls: form.imageUrls.filter((_, i) => i !== idx) })}>
+                    <Button variant="ghost" size="icon" className="mt-1 text-red-500 shrink-0" onClick={() => setForm({ ...form, imageUrls: form.imageUrls.filter((_, i) => i !== idx) })}>
                       <Trash2 className="h-4 w-4" />
                     </Button>
                   )}
                 </div>
               ))}
+              <Button variant="outline" size="sm" onClick={() => setForm({ ...form, imageUrls: [...form.imageUrls, ''] })}>
+                <Plus className="mr-2 h-4 w-4" /> Add Image
+              </Button>
             </div>
           </div>
 

@@ -106,7 +106,7 @@ export default function Footer() {
                 <span>
                   123, BKC, Bandra East,
                   <br />
-                  Mumbai, Maharashtra 400051
+                  Howrah, West Bengal 711101
                 </span>
               </li>
             </ul>

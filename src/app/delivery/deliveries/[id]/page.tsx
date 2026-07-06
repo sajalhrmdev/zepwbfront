@@ -17,7 +17,7 @@ const mockDelivery = {
   status: "OUT_FOR_DELIVERY",
   customer: "John Doe",
   phone: "+91 9876543210",
-  address: "123, Main Street, Apartment 4B, Mumbai - 400001",
+  address: "123, Main Street, Apartment 4B, Howrah - 711101",
   items: [
     { name: "Fresh Tomatoes", qty: 2, price: 30 },
     { name: "Full Cream Milk", qty: 1, price: 64 },

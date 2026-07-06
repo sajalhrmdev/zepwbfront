@@ -20,9 +20,9 @@ const statusColors: Record<string, string> = {
 };
 
 const mockDeliveries = [
-  { id: "1", orderNo: "ORD-ABC123", customer: "John Doe", address: "123 Main St, Mumbai", status: "ASSIGNED", date: new Date().toISOString() },
-  { id: "2", orderNo: "ORD-DEF456", customer: "Jane Smith", address: "456 Park Ave, Mumbai", status: "OUT_FOR_DELIVERY", date: new Date().toISOString() },
-  { id: "3", orderNo: "ORD-GHI789", customer: "Bob Wilson", address: "789 Oak Rd, Mumbai", status: "DELIVERED", date: new Date(Date.now() - 86400000).toISOString() },
+  { id: "1", orderNo: "ORD-ABC123", customer: "John Doe", address: "123 Main St, Howrah", status: "ASSIGNED", date: new Date().toISOString() },
+  { id: "2", orderNo: "ORD-DEF456", customer: "Jane Smith", address: "456 Park Ave, Howrah", status: "OUT_FOR_DELIVERY", date: new Date().toISOString() },
+  { id: "3", orderNo: "ORD-GHI789", customer: "Bob Wilson", address: "789 Oak Rd, Howrah", status: "DELIVERED", date: new Date(Date.now() - 86400000).toISOString() },
 ];
 
 const tabs = ["All", "ASSIGNED", "OUT_FOR_DELIVERY", "DELIVERED"];

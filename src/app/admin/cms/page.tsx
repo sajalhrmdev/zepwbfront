@@ -52,6 +52,7 @@ import {
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
 import { formatDate } from '@/lib/utils';
+import { ImageUpload } from '@/components/image-upload';
 
 interface CMSPage {
   id: string;
@@ -409,11 +410,10 @@ export default function AdminCMSPage() {
               />
             </div>
             <div className="grid gap-2">
-              <Label>Image URL</Label>
-              <Input
+              <Label>Image</Label>
+              <ImageUpload
                 value={bannerForm.imageUrl}
-                onChange={(e) => setBannerForm({ ...bannerForm, imageUrl: e.target.value })}
-                placeholder="https://example.com/banner.jpg"
+                onChange={(url) => setBannerForm({ ...bannerForm, imageUrl: url })}
               />
             </div>
             <div className="grid gap-2">

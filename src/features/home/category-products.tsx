@@ -7,7 +7,8 @@ import { ProductCard } from "@/components/product-card";
 import { SectionHeader } from "@/components/section-header";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
-import { RotateCcw, PackageOpen } from "lucide-react";
+import { RotateCcw } from "lucide-react";
+import type { Category } from "@/types";
 
 interface CategoryProductsProps {
   slug: string;
@@ -16,10 +17,12 @@ interface CategoryProductsProps {
 }
 
 export default function CategoryProducts({ slug, title, href }: CategoryProductsProps) {
-  const { data: category } = useQuery({
-    queryKey: ["category", slug],
-    queryFn: () => categoryService.findBySlug(slug),
+  const { data: categories } = useQuery({
+    queryKey: ["categories"],
+    queryFn: () => categoryService.findAll(),
+    staleTime: 60000,
   });
+  const category = categories?.find((c) => c.slug === slug);
 
   const { data: result, isLoading, isError, refetch } = useQuery({
     queryKey: ["products", "category", slug],

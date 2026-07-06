@@ -16,6 +16,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Badge } from '@/components/ui/badge';
+import { ImageUpload } from '@/components/image-upload';
 import {
   Select,
   SelectContent,
@@ -288,11 +289,10 @@ export default function AdminCategoriesPage() {
               />
             </div>
             <div className="grid gap-2">
-              <Label>Image URL</Label>
-              <Input
+              <Label>Image</Label>
+              <ImageUpload
                 value={form.imageUrl}
-                onChange={(e) => setForm({ ...form, imageUrl: e.target.value })}
-                placeholder="https://example.com/image.jpg"
+                onChange={(url) => setForm({ ...form, imageUrl: url })}
               />
             </div>
             <div className="grid grid-cols-2 gap-4">

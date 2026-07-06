@@ -191,14 +191,14 @@ export default function ProductDetailPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-      <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
-        <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
-        <span>/</span>
-        <Link href={`/products?category=${product.category.slug}`} className="hover:text-foreground transition-colors">
+      <nav className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-muted-foreground mb-6 overflow-x-auto pb-1 scrollbar-hide">
+        <Link href="/" className="hover:text-foreground transition-colors shrink-0">Home</Link>
+        <span className="shrink-0">/</span>
+        <Link href={`/products?category=${product.category.slug}`} className="hover:text-foreground transition-colors shrink-0">
           {product.category.name}
         </Link>
-        <span>/</span>
-        <span className="text-foreground font-medium truncate max-w-[200px]">{product.name}</span>
+        <span className="shrink-0">/</span>
+        <span className="text-foreground font-medium truncate">{product.name}</span>
       </nav>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
@@ -288,8 +288,8 @@ export default function ProductDetailPage() {
 
           <Separator className="my-6" />
 
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-1">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            <div className="flex items-center gap-1 self-center">
               <button
                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
                 className="flex items-center justify-center h-10 w-10 rounded-full border hover:bg-accent transition-colors"
@@ -307,38 +307,40 @@ export default function ProductDetailPage() {
               </button>
             </div>
 
-            <Button
-              size="lg"
-              className="flex-1 gap-2 bg-green-600 hover:bg-green-700"
-              onClick={() => addToCartMutation.mutate()}
-              disabled={addToCartMutation.isPending || product.stock === 0}
-            >
-              <ShoppingCart className="h-5 w-5" />
-              {product.stock === 0 ? "Out of Stock" : addToCartMutation.isPending ? "Adding..." : inCart ? "Add Again" : "Add to Cart"}
-            </Button>
+            <div className="flex gap-2 flex-1">
+              <Button
+                size="lg"
+                className="flex-1 gap-2 bg-green-600 hover:bg-green-700"
+                onClick={() => addToCartMutation.mutate()}
+                disabled={addToCartMutation.isPending || product.stock === 0}
+              >
+                <ShoppingCart className="h-5 w-5" />
+                {product.stock === 0 ? "Out of Stock" : addToCartMutation.isPending ? "Adding..." : inCart ? "Add Again" : "Add to Cart"}
+              </Button>
 
-            <Button variant="outline" size="lg" className="gap-2">
-              <Zap className="h-5 w-5" />
-              Buy Now
-            </Button>
+              <Button variant="outline" size="lg" className="flex-1 gap-2">
+                <Zap className="h-5 w-5" />
+                Buy Now
+              </Button>
 
-            <Button
-              variant="outline"
-              size="icon"
-              className="h-12 w-12 shrink-0"
-              onClick={() => {
-                if (!isAuthenticated) {
-                  router.push("/auth/login");
-                  return;
-                }
-                wishlistMutation.mutate();
-              }}
-            >
-              <Heart className={`h-5 w-5 ${isWishlisted ? "fill-red-500 text-red-500" : ""}`} />
-            </Button>
+              <Button
+                variant="outline"
+                size="icon"
+                className="h-12 w-12 shrink-0"
+                onClick={() => {
+                  if (!isAuthenticated) {
+                    router.push("/auth/login");
+                    return;
+                  }
+                  wishlistMutation.mutate();
+                }}
+              >
+                <Heart className={`h-5 w-5 ${isWishlisted ? "fill-red-500 text-red-500" : ""}`} />
+              </Button>
+            </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-3 mt-6">
+          <div className="grid grid-cols-3 gap-2 sm:gap-3 mt-6">
             <div className="flex flex-col items-center gap-1.5 p-3 rounded-lg bg-muted/50">
               <Truck className="h-5 w-5 text-green-600" />
               <span className="text-xs text-center text-muted-foreground">Free delivery</span>
@@ -382,7 +384,7 @@ export default function ProductDetailPage() {
 
           <section>
             <h2 className="text-xl font-bold mb-4">Product Details</h2>
-            <div className="grid grid-cols-2 gap-4 text-sm">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
               <div className="flex justify-between py-2 px-3 rounded-lg bg-muted/50">
                 <span className="text-muted-foreground">Country of Origin</span>
                 <span className="font-medium">India</span>
@@ -429,8 +431,8 @@ export default function ProductDetailPage() {
               </Button>
             </div>
 
-            <div className="flex items-center gap-6 mb-8 p-6 rounded-xl border bg-card">
-              <div className="text-center">
+            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mb-8 p-4 sm:p-6 rounded-xl border bg-card">
+              <div className="text-center shrink-0">
                 <div className="text-4xl font-bold text-foreground">{product.averageRating.toFixed(1)}</div>
                 <StarRating rating={product.averageRating} size="md" />
                 <p className="text-xs text-muted-foreground mt-1">{product.totalReviews} reviews</p>
