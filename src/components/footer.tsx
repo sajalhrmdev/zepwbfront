@@ -95,17 +95,15 @@ export default function Footer() {
               <li className="flex items-center gap-2.5 text-gray-400 text-sm">
                 <Phone className="h-4 w-4 text-brand-400 shrink-0" />
                 <a
-                  href="tel:+919876543210"
+                  href="tel:+918001454303"
                   className="hover:text-white transition-colors"
                 >
-                  +91 98765 43210
+                  91 8001454303
                 </a>
               </li>
               <li className="flex items-start gap-2.5 text-gray-400 text-sm">
                 <MapPin className="h-4 w-4 text-brand-400 shrink-0 mt-0.5" />
                 <span>
-                  123, BKC, Bandra East,
-                  <br />
                   Howrah, West Bengal 711101
                 </span>
               </li>
