@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { Check, Truck, MapPin, Package, ArrowLeft, Phone, User, KeyRound, Loader2 } from "lucide-react";
+import { optimizeImageUrl } from "@/lib/cloudinary";
 import { orderService } from "@/services/order.service";
 import { ORDER_STATUS_MAP } from "@/lib/constants";
 import { formatDate, formatDateTime, formatPrice } from "@/lib/utils";
@@ -210,7 +211,7 @@ export default function TrackOrderPage({ params }: { params: Promise<{ id: strin
                   <div key={item.id} className="flex gap-4">
                     <div className="relative h-20 w-20 rounded-lg overflow-hidden shrink-0 bg-muted">
                       {item.image ? (
-                        <Image src={item.image} alt={item.name} fill className="object-cover" />
+                        <Image src={optimizeImageUrl(item.image, 160)} alt={item.name} fill className="object-cover" sizes="80px" />
                       ) : (
                         <div className="flex h-full items-center justify-center text-xs text-muted-foreground">N/A</div>
                       )}

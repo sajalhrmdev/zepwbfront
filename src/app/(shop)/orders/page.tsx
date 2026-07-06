@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
+import { optimizeImageUrl } from "@/lib/cloudinary";
 import { Package, ChevronLeft, ChevronRight, Eye, Truck, XCircle, RotateCcw } from "lucide-react";
 import { orderService } from "@/services/order.service";
 import { ORDER_STATUS_MAP, PAYMENT_STATUS_MAP } from "@/lib/constants";
@@ -59,7 +60,7 @@ function OrderCard({ order }: { order: Order }) {
               {visibleItems.map((item) => (
                 <div key={item.id} className="relative h-12 w-12 rounded-lg border-2 border-background overflow-hidden bg-muted">
                   {item.image ? (
-                    <Image src={item.image} alt={item.name} fill className="object-cover" />
+                    <Image src={optimizeImageUrl(item.image, 96)} alt={item.name} fill className="object-cover" sizes="48px" />
                   ) : (
                     <div className="flex h-full items-center justify-center text-[10px] text-muted-foreground">N/A</div>
                   )}

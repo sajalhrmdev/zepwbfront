@@ -8,6 +8,7 @@ import { categoryService } from "@/services/category.service";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { RotateCcw, ShoppingBag, ChevronLeft, ChevronRight } from "lucide-react";
+import { optimizeImageUrl } from "@/lib/cloudinary";
 
 function isValidImageUrl(url?: string): url is string {
   if (!url) return false;
@@ -95,11 +96,12 @@ export default function CategorySlider() {
               <div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-muted md:h-24 md:w-24">
                 {isValidImageUrl(category.image || category.icon) ? (
                   <Image
-                    src={category.image || category.icon!}
+                    src={optimizeImageUrl(category.image || category.icon!, 192)}
                     alt={category.name}
                     width={96}
                     height={96}
                     className="h-full w-full object-cover"
+                    sizes="(max-width: 768px) 80px, 96px"
                   />
                 ) : (
                   <span className="text-2xl font-bold text-muted-foreground">

@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
+import { optimizeImageUrl } from "@/lib/cloudinary";
 
 interface Category {
   id: string;
@@ -24,11 +26,15 @@ export default function CategoryCard({ category }: CategoryCardProps) {
         <span className="text-4xl">{category.icon}</span>
       )}
       {category.image && !category.icon && (
-        <img
-          src={category.image}
-          alt={category.name}
-          className="h-16 w-16 rounded-full object-cover"
-        />
+        <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full bg-muted">
+          <Image
+            src={optimizeImageUrl(category.image, 128)}
+            alt={category.name}
+            fill
+            className="object-cover"
+            sizes="64px"
+          />
+        </div>
       )}
       <span className="text-sm font-medium text-gray-900 dark:text-gray-100 text-center">
         {category.name}

@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { RotateCcw, Zap } from "lucide-react";
 import { formatPrice } from "@/lib/utils";
+import { optimizeImageUrl } from "@/lib/cloudinary";
 import { Product } from "@/types";
 
 function CountdownTimer({ targetDate }: { targetDate?: string }) {
@@ -73,10 +74,11 @@ function FlashSaleCard({ product }: { product: Product }) {
       <div className="relative aspect-square overflow-hidden rounded-md bg-muted">
         {primaryImage ? (
           <Image
-            src={primaryImage}
+            src={optimizeImageUrl(primaryImage, 400)}
             alt={product.name}
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-105"
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           />
         ) : (
           <div className="flex h-full items-center justify-center text-xs text-muted-foreground">

@@ -27,6 +27,7 @@ import { wishlistService } from "@/services/wishlist.service";
 import { useCartStore, useCartComputed } from "@/store/cart.store";
 import { useAuth } from "@/contexts/auth-context";
 import { formatPrice, calculateDiscount, formatDate } from "@/lib/utils";
+import { optimizeImageUrl } from "@/lib/cloudinary";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -106,7 +107,7 @@ function ReviewCard({
             <div className="flex gap-2 mt-3">
               {review.images.map((img, i) => (
                 <div key={i} className="relative h-16 w-16 rounded-lg overflow-hidden bg-muted">
-                  <Image src={img.url} alt="Review image" fill className="object-cover" />
+                  <Image src={optimizeImageUrl(img.url, 128)} alt="Review image" fill className="object-cover" sizes="64px" />
                 </div>
               ))}
             </div>
@@ -206,7 +207,7 @@ export default function ProductDetailPage() {
           <div className="relative aspect-square rounded-xl overflow-hidden bg-muted mb-4">
             {images[selectedImageIndex]?.url ? (
               <Image
-                src={images[selectedImageIndex].url}
+                src={optimizeImageUrl(images[selectedImageIndex].url, 800)}
                 alt={images[selectedImageIndex].alt || product.name}
                 fill
                 className="object-cover"
@@ -228,7 +229,7 @@ export default function ProductDetailPage() {
                   }`}
                 >
                   {img.url ? (
-                    <Image src={img.url} alt={img.alt || ""} fill className="object-cover" />
+                    <Image src={optimizeImageUrl(img.url, 128)} alt={img.alt || ""} fill className="object-cover" sizes="64px" />
                   ) : (
                     <div className="h-full bg-muted" />
                   )}
@@ -484,7 +485,7 @@ export default function ProductDetailPage() {
                       className="flex gap-3 p-3 rounded-xl hover:bg-accent transition-colors"
                     >
                       <div className="relative h-16 w-16 rounded-lg overflow-hidden shrink-0 bg-muted">
-                        {img ? <Image src={img} alt={rp.name} fill className="object-cover" /> : null}
+                        {img ? <Image src={optimizeImageUrl(img, 128)} alt={rp.name} fill className="object-cover" sizes="64px" /> : null}
                       </div>
                       <div className="min-w-0">
                         <p className="text-sm font-medium truncate">{rp.name}</p>
@@ -506,7 +507,7 @@ export default function ProductDetailPage() {
                   return (
                     <div key={fb.id} className="flex gap-3 p-3 rounded-xl border bg-card">
                       <div className="relative h-16 w-16 rounded-lg overflow-hidden shrink-0 bg-muted">
-                        {img ? <Image src={img} alt={fb.name} fill className="object-cover" /> : null}
+                        {img ? <Image src={optimizeImageUrl(img, 128)} alt={fb.name} fill className="object-cover" sizes="64px" /> : null}
                       </div>
                       <div className="min-w-0 flex-1">
                         <p className="text-sm font-medium truncate">{fb.name}</p>
@@ -538,7 +539,7 @@ export default function ProductDetailPage() {
                   className="group shrink-0 w-44 rounded-xl border hover:shadow-lg transition-all"
                 >
                   <div className="relative aspect-square rounded-t-xl overflow-hidden bg-muted">
-                    {img ? <Image src={img} alt={rp.name} fill className="object-cover group-hover:scale-105 transition-transform" /> : null}
+                    {img ? <Image src={optimizeImageUrl(img, 300)} alt={rp.name} fill className="object-cover group-hover:scale-105 transition-transform" sizes="176px" /> : null}
                   </div>
                   <div className="p-3">
                     <p className="text-sm font-medium truncate">{rp.name}</p>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ShoppingCart, Star } from "lucide-react";
 import { Product } from "@/types";
 import { cn, formatPrice } from "@/lib/utils";
+import { optimizeImageUrl } from "@/lib/cloudinary";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useCartStore } from "@/store/cart.store";
@@ -24,7 +25,7 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
       <Link href={`/products/${product.slug}`} className="group flex items-center gap-3 rounded-lg border p-3 hover:bg-accent transition-colors">
         <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-md bg-muted">
           {primaryImage ? (
-            <Image src={primaryImage} alt={product.name} fill className="object-cover" />
+            <Image src={optimizeImageUrl(primaryImage, 128)} alt={product.name} fill className="object-cover" sizes="128px" />
           ) : (
             <div className="flex h-full items-center justify-center text-muted-foreground text-xs">No img</div>
           )}
@@ -45,7 +46,7 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
       <Link href={`/products/${product.slug}`} className="group space-y-2">
         <div className="relative aspect-square overflow-hidden rounded-lg bg-muted">
           {primaryImage ? (
-            <Image src={primaryImage} alt={product.name} fill className="object-cover transition-transform group-hover:scale-105" />
+            <Image src={optimizeImageUrl(primaryImage, 400)} alt={product.name} fill className="object-cover transition-transform group-hover:scale-105" sizes="(max-width: 640px) 50vw, 25vw" />
           ) : (
             <div className="flex h-full items-center justify-center text-muted-foreground text-xs">No image</div>
           )}
@@ -73,7 +74,7 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
       <Link href={`/products/${product.slug}`}>
         <div className="relative aspect-square overflow-hidden bg-muted">
           {primaryImage ? (
-            <Image src={primaryImage} alt={product.name} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />
+            <Image src={optimizeImageUrl(primaryImage, 500)} alt={product.name} fill className="object-cover transition-transform duration-300 group-hover:scale-105" sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw" />
           ) : (
             <div className="flex h-full items-center justify-center text-muted-foreground">No image</div>
           )}

@@ -11,6 +11,7 @@ import { useDebounce } from "@/hooks/use-debounce";
 import { productService } from "@/services/product.service";
 import { categoryService } from "@/services/category.service";
 import { formatPrice, calculateDiscount } from "@/lib/utils";
+import { optimizeImageUrl } from "@/lib/cloudinary";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -59,7 +60,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
         <div className="relative aspect-square bg-muted">
           {primaryImage ? (
             <Image
-              src={primaryImage}
+              src={optimizeImageUrl(primaryImage, 500)}
               alt={product.name}
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"

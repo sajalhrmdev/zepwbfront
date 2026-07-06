@@ -9,6 +9,7 @@ import { useDebounce } from "@/hooks/use-debounce";
 import { productService } from "@/services/product.service";
 import { categoryService } from "@/services/category.service";
 import { formatPrice, calculateDiscount } from "@/lib/utils";
+import { optimizeImageUrl } from "@/lib/cloudinary";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Input } from "@/components/ui/input";
@@ -108,7 +109,7 @@ export default function CategoryProductsPage({ params }: { params: Promise<{ slu
         <h1 className="text-2xl font-bold">{category?.name || "Category"}</h1>
         {category?.image && (
           <div className="relative h-48 rounded-xl overflow-hidden mt-4 mb-6">
-            <Image src={category.image} alt={category.name} fill className="object-cover" />
+            <Image src={optimizeImageUrl(category.image, 1200)} alt={category.name} fill className="object-cover" sizes="100vw" />
           </div>
         )}
         {productsData && (
@@ -235,7 +236,7 @@ export default function CategoryProductsPage({ params }: { params: Promise<{ slu
                       <div className="relative aspect-square bg-muted">
                         {primaryImage ? (
                           <Image
-                            src={primaryImage}
+                            src={optimizeImageUrl(primaryImage, 500)}
                             alt={product.name}
                             fill
                             className="object-cover group-hover:scale-105 transition-transform duration-500"

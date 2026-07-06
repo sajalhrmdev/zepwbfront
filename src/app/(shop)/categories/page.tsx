@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { categoryService } from "@/services/category.service";
 import { Skeleton } from "@/components/ui/skeleton";
 import { PackageOpen } from "lucide-react";
+import { optimizeImageUrl } from "@/lib/cloudinary";
 
 export default function CategoriesPage() {
   const { data: categories, isLoading } = useQuery({
@@ -47,7 +48,7 @@ export default function CategoriesPage() {
           >
             <div className="relative h-20 w-20 sm:h-24 sm:w-24 rounded-full overflow-hidden bg-muted group-hover:scale-110 transition-transform">
               {cat.image ? (
-                <Image src={cat.image} alt={cat.name} fill className="object-cover" />
+                <Image src={optimizeImageUrl(cat.image, 192)} alt={cat.name} fill className="object-cover" sizes="(max-width: 640px) 80px, 96px" />
               ) : (
                 <div className="h-full flex items-center justify-center text-3xl">{cat.icon}</div>
               )}

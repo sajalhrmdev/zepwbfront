@@ -9,6 +9,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { RotateCcw, Star } from "lucide-react";
 import { formatPrice } from "@/lib/utils";
+import { optimizeImageUrl } from "@/lib/cloudinary";
 
 export default function BestSellers() {
   const { data: result, isLoading, isError, refetch } = useQuery({
@@ -78,10 +79,11 @@ export default function BestSellers() {
               <div className="relative aspect-square overflow-hidden rounded-lg bg-muted">
                 {primaryImage ? (
                   <Image
-                    src={primaryImage}
+                    src={optimizeImageUrl(primaryImage, 300)}
                     alt={product.name}
                     fill
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    sizes="(max-width: 768px) 176px, 208px"
                   />
                 ) : (
                   <div className="flex h-full items-center justify-center text-xs text-muted-foreground">

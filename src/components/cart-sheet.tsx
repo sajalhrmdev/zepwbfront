@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingBag, X, Plus, Minus, Trash2 } from "lucide-react";
 import { useCartStore } from "@/store/cart.store";
+import { optimizeImageUrl } from "@/lib/cloudinary";
 
 interface CartSheetProps {
   open: boolean;
@@ -87,10 +88,11 @@ export default function CartSheet({ open, onClose }: CartSheetProps) {
                       <div className="relative h-20 w-20 rounded-lg overflow-hidden shrink-0 bg-gray-200 dark:bg-gray-800">
                         {item.image && (
                           <Image
-                            src={item.image}
+                            src={optimizeImageUrl(item.image, 160)}
                             alt={item.name}
                             fill
                             className="object-cover"
+                            sizes="80px"
                           />
                         )}
                       </div>

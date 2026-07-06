@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { ShoppingBag, Minus, Plus, Trash2, Tag, ArrowLeft } from "lucide-react";
+import { optimizeImageUrl } from "@/lib/cloudinary";
 import { cartService } from "@/services/cart.service";
 import { useCartStore, useCartComputed } from "@/store/cart.store";
 import { formatPrice } from "@/lib/utils";
@@ -96,7 +97,7 @@ export default function CartPage() {
             >
               <Link href={`/products/${item.productId}`} className="relative h-24 w-24 rounded-lg overflow-hidden shrink-0 bg-muted">
                 {item.image ? (
-                  <Image src={item.image} alt={item.name} fill className="object-cover" />
+                  <Image src={optimizeImageUrl(item.image, 192)} alt={item.name} fill className="object-cover" sizes="96px" />
                 ) : (
                   <div className="flex items-center justify-center h-full text-xs text-muted-foreground">No img</div>
                 )}
